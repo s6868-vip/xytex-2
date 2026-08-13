@@ -1,0 +1,2051 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>国际信誉 大额无忧</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<style id="redpacket-styles">
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      text-shadow: none !important;
+    }
+    body {
+      background: #0a0a0d url("static/img/bg.jpg") center center / cover no-repeat fixed;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #fff;
+      min-height: 100vh;
+      display: block;
+    }
+    .app-container {
+      width: 100%;
+      max-width: 500px;
+      background: rgba(15, 15, 22, 0.92);
+      min-height: 100vh;
+      padding: 15px;
+      box-shadow: 0 0 35px rgba(0, 0, 0, 0.9);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .header-banner {
+      text-align: center;
+      padding: 10px 0;
+      background: linear-gradient(180deg, rgba(226, 189, 78, 0.25) 0%, rgba(0, 0, 0, 0) 100%);
+      border-radius: 10px;
+      border: 1px solid rgba(226, 189, 78, 0.3);
+    }
+    .header-title {
+      font-size: 22px;
+      font-weight: bold;
+      color: #fde18f;
+      background: linear-gradient(180deg, #fff2cc 0%, #dfb946 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .lottery-section {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(226, 189, 78, 0.35);
+      border-radius: 12px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .lottery-header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: #e2bd4e;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+    .timer-container {
+      background-color: #1a1a1a;
+      border: 1px solid #dfb946;
+      border-radius: 6px;
+      padding: 3px 8px;
+      display: flex;
+      align-items: center;
+      color: #fff;
+    }
+    .timer-num {
+      color: #ffcc00;
+      font-size: 15px;
+      font-weight: bold;
+      margin: 0 2px;
+    }
+    .wheel-container {
+      position: relative;
+      width: 290px;
+      height: 290px;
+      margin: 10px 0 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wheel-outer-ring {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #fce8a6 0%, #b8860b 50%, #fce8a6 100%);
+      box-shadow: 0 0 20px rgba(226, 189, 78, 0.5), inset 0 0 10px rgba(0,0,0,0.8);
+      padding: 10px;
+    }
+    .dots-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .dot {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #fff, 0 0 10px #ffcc00;
+      top: 50%;
+      left: 50%;
+      margin: -4px;
+    }
+    .pointer {
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-top: 32px solid #ff2a2a;
+      z-index: 30;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.8));
+    }
+    .pointer::after {
+      content: '';
+      position: absolute;
+      top: -30px;
+      left: -6px;
+      width: 12px;
+      height: 12px;
+      background: #ffe066;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #fff;
+    }
+    .pointer-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px;
+      height: 64px;
+      background: radial-gradient(circle, #fff6d5 0%, #dfb946 70%, #997300 100%);
+      border: 3px solid #ffffff;
+      border-radius: 50%;
+      z-index: 25;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      color: #3d1e00;
+      font-size: 13px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.8), inset 0 2px 5px rgba(255,255,255,0.8);
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.1s;
+    }
+    .pointer-center:active {
+      transform: translate(-50%, -50%) scale(0.95);
+    }
+    .wheel {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+      transition: transform 4s cubic-bezier(0.15, 0.9, 0.15, 1);
+      box-shadow: inset 0 0 15px rgba(0,0,0,0.9);
+      background: conic-gradient(
+        #8b0000 0deg 60deg,
+        #2a0800 60deg 120deg,
+        #8b0000 120deg 180deg,
+        #2a0800 180deg 240deg,
+        #8b0000 240deg 300deg,
+        #2a0800 300deg 360deg
+      );
+      border: 2px solid #dfb946;
+    }
+    .sector-label {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 70px;
+      height: 135px;
+      margin-left: -35px;
+      transform-origin: 50% 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 15px;
+      font-size: 12px;
+      font-weight: bold;
+      color: #ffe699;
+      pointer-events: none;
+      text-shadow: 0 1px 2px #000 !important;
+    }
+    .sector-label span {
+      margin-top: 4px;
+      font-size: 11px;
+      color: #ffffff;
+    }
+    .action-group {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .gold-btn {
+      width: 100%;
+      padding: 11px 0;
+      font-size: 15px;
+      font-weight: bold;
+      color: #2b1700;
+      background: linear-gradient(180deg, #ffe89e 0%, #dfb946 100%);
+      border: none;
+      border-radius: 22px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(223, 185, 70, 0.3);
+      transition: all 0.2s;
+    }
+    .gold-btn:disabled {
+      background: #444;
+      color: #888;
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+    .history-btn {
+      width: 100%;
+      padding: 10px 0;
+      font-size: 14px;
+      font-weight: bold;
+      color: #fde18f;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid #dfb946;
+      border-radius: 22px;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.2s;
+    }
+    .history-btn:hover {
+      background: rgba(223, 185, 70, 0.15);
+    }
+    .status-tips {
+      font-size: 12px;
+      color: #aaa;
+      text-align: center;
+    }
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .reward-card {
+      background: #180a02;
+      border: 1px solid #3d230b;
+      width: 88%;
+      max-width: 340px;
+      border-radius: 16px;
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    .reward-header {
+      font-size: 22px;
+      font-weight: bold;
+      color: #ffd833;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .reward-box {
+      width: 100%;
+      border: 2px solid #caa038;
+      border-radius: 12px;
+      background: rgba(35, 18, 5, 0.6);
+      padding: 16px 10px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .reward-box-text {
+      color: #ff4822;
+      font-size: 20px;
+      font-weight: 900;
+      line-height: 1.35;
+      letter-spacing: 0.5px;
+      white-space: pre-line;
+    }
+    .reward-instructions {
+      font-size: 13px;
+      color: #ffffff;
+      line-height: 1.7;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+    .reward-instructions p {
+      margin: 2px 0;
+    }
+    .reward-instructions .highlight {
+      color: #ffd833;
+      font-weight: bold;
+    }
+    .reward-btn {
+      width: 100%;
+      padding: 12px 0;
+      background: linear-gradient(180deg, #fde28f 0%, #e1b43d 100%);
+      color: #2d1b01;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(225, 180, 61, 0.3);
+    }
+    .reward-bottom-link {
+      margin-top: 15px;
+      font-size: 13.5px;
+      color: #f7cd46;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+    }
+    .history-card {
+      background: #15151c;
+      border: 1px solid #dfb946;
+      width: 90%;
+      max-width: 360px;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.9);
+    }
+    .history-title {
+      font-size: 18px;
+      color: #fde18f;
+      margin-bottom: 12px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .history-list {
+      max-height: 240px;
+      overflow-y: auto;
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .history-item {
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(223, 185, 70, 0.3);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .history-item:hover {
+      background: rgba(223, 185, 70, 0.15);
+    }
+    .modal-btn-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    .modal-close-btn {
+      flex: 1;
+      padding: 8px 0;
+      background: #333;
+      color: #ccc;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  
+</style>
+<style id="static-page-styles">
+
+        :root {
+            --neon-cyan: #00F2FE;
+            --neon-pink: #FF007A;
+            --neon-green: #00FF75;
+            --neon-yellow: #FFDD00;
+            --gold-light: #FFF1B8;
+            --gold-main: #FFD700;
+            --gold-dark: #FFA000;
+            --bg-color: #0b0e14;
+            --card-bg: #131926;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        .merged-static-root {
+            color: #E2E8F0;
+            padding: 15px 12px 30px;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .static-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .neon-card {
+            position: relative;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+        }
+
+        /* 标语区 */
+        .hero-banner {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 8px;
+        }
+
+        .hero-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(180deg, rgba(30, 10, 15, 0.6) 0%, rgba(15, 20, 30, 0.8) 100%);
+            border: 1px solid rgba(255, 0, 60, 0.25);
+            border-radius: 14px;
+            padding: 12px 10px;
+            box-shadow: inset 0 0 15px rgba(255, 0, 60, 0.05);
+            text-align: center;
+        }
+
+        /* 顶部主徽章标签 */
+        .hero-badge {
+            font-size: 15px;
+            font-weight: 900;
+            padding: 5px 16px;
+            border-radius: 20px;
+            white-space: nowrap;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #8B0000 0%, #D32F2F 50%, #8B0000 100%);
+            color: #FFFFFF;
+            border: 1px solid #FF5252;
+            box-shadow: 0 0 10px rgba(255, 0, 60, 0.4), inset 0 0 6px rgba(255, 255, 255, 0.3);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+        }
+
+        /* 底部 4 个标签包裹容器 */
+        .badge-footer-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            margin-top: 4px;
+            width: 100%;
+        }
+
+        /* 底部 4 个标签风格 */
+        .badge-footer-group .hero-badge {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 10px;
+            letter-spacing: 0.5px;
+            white-space: normal;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0, 242, 254, 0.12) 0%, rgba(255, 0, 122, 0.1) 100%);
+            color: #E0F9FF;
+            border: 1px solid rgba(0, 242, 254, 0.4);
+            box-shadow: 0 0 6px rgba(0, 242, 254, 0.15), inset 0 0 4px rgba(0, 242, 254, 0.1);
+            text-shadow: 0 0 4px rgba(0, 242, 254, 0.5);
+        }
+
+        .text-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        /* 彩虹流光文本（字体缩小50%至 11.25px，行高同步收紧） */
+        .rainbow-glow-text {
+            font-size: 11.25px;
+            line-height: 1.45;
+            font-weight: 800;
+            letter-spacing: 0px;
+            text-align: center;
+            width: 100%;
+            max-width: 517.5px;
+            margin: 0 auto;
+            word-break: break-all;
+            background: linear-gradient(90deg, #FF0055, #FF5000, #FFCC00, #00FF66, #00F2FE, #9D00FF, #FF0055);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbowFlow 4s linear infinite, glowBreath 2s ease-in-out infinite alternate;
+            will-change: background-position, filter;
+        }
+
+        @keyframes rainbowFlow {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes glowBreath {
+            0% {
+                filter: drop-shadow(0 0 2px rgba(0, 242, 254, 0.3));
+            }
+            100% {
+                filter: drop-shadow(0 0 6px rgba(0, 242, 254, 0.8)) drop-shadow(0 0 10px rgba(255, 0, 122, 0.4));
+            }
+        }
+
+        .app-card {
+            text-align: center;
+            padding: 10px 5px;
+        }
+
+        .app-logo {
+            width: 70px;
+            height: 70px;
+            background: rgba(0, 242, 254, 0.1);
+            border: 2px solid var(--neon-cyan);
+            border-radius: 18px;
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neon-cyan);
+            font-size: 32px;
+            font-weight: 900;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.25);
+        }
+
+        .app-card h1 {
+            font-size: 24px;
+            color: #FFF;
+            margin-bottom: 12px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .server-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 15px;
+            margin-top: 12px;
+        }
+
+        .server-box p {
+            font-size: 13px;
+            color: #A0AEC0;
+            margin-bottom: 6px;
+        }
+
+        .server-box strong {
+            color: var(--neon-cyan);
+            font-size: 30px;
+        }
+
+        .copy-tag {
+            display: inline-block;
+            background: rgba(255, 0, 122, 0.15);
+            color: #FFFFFF;
+            border: 2px solid var(--neon-pink);
+            font-size: 20px;
+            font-weight: 900;
+            padding: 8px 28px;
+            border-radius: 25px;
+            margin-top: 10px;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 0, 122, 0.3);
+            transition: transform 0.2s, background 0.2s;
+            letter-spacing: 2px;
+        }
+
+        .copy-tag:active {
+            transform: scale(0.95);
+            background: rgba(255, 0, 122, 0.3);
+        }
+
+        .download-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .btn-download {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 20px;
+            border-radius: 16px;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 800;
+            color: #FFF;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+
+        .btn-ios {
+            background: #182030;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+
+        .btn-android {
+            background: linear-gradient(135deg, #00A8E8 0%, #007EA7 100%);
+            border: 1px solid var(--neon-cyan);
+            box-shadow: 0 6px 20px rgba(0, 168, 232, 0.3);
+        }
+
+        .btn-download:active {
+            transform: translateY(2px);
+        }
+
+        .btn-icon {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            color: var(--neon-cyan);
+            letter-spacing: 1px;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .step-num {
+            width: 28px;
+            height: 28px;
+            background: rgba(0, 242, 254, 0.15);
+            color: var(--neon-cyan);
+            border: 1px solid var(--neon-cyan);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .step-header h3 {
+            font-size: 16px;
+            color: #FFF;
+            font-weight: 800;
+        }
+
+        .step-desc {
+            font-size: 13px;
+            color: #A0AEC0;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .mockup-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 12px;
+        }
+
+        .phone-mockup {
+            width: 100%;
+            max-width: 220px;
+            background: #090C12;
+            border-radius: 20px;
+            padding: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .phone-screen {
+            background: #171E2C;
+            border-radius: 16px;
+            padding: 16px 10px;
+            min-height: 130px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border: 1px dashed rgba(255,255,255,0.1);
+        }
+
+        .screen-badge {
+            background: rgba(0, 242, 254, 0.12);
+            color: var(--neon-cyan);
+            border: 1px solid var(--neon-cyan);
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .mockup-box {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 8px 6px;
+            margin-top: 6px;
+        }
+
+        .mockup-highlight {
+            color: var(--neon-pink);
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .highlight-click {
+            color: var(--neon-pink);
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        #toast {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.85);
+            color: #FFF;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            border: 1px solid var(--neon-pink);
+            box-shadow: 0 0 15px rgba(255, 0, 122, 0.5);
+            display: none;
+            z-index: 9999;
+            text-align: center;
+        }
+    
+</style>
+
+<style id="merged-layout-fix">
+  html, body {
+    width: 100% !important;
+    min-height: 100% !important;
+  }
+  body {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+  }
+  .page-shell {
+    width: 100% !important;
+    min-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .page-shell > .app-container,
+  .page-shell > .merged-static-root {
+    position: relative !important;
+    float: none !important;
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .page-shell > .app-container {
+    max-width: 500px !important;
+    min-height: auto !important;
+  }
+  .page-shell > .merged-static-root {
+    max-width: 624px !important;
+  }
+  .page-shell > .merged-static-root > .static-container {
+    width: 100% !important;
+    max-width: 600px !important;
+    margin: 0 auto !important;
+  }
+</style>
+</head>
+<body>
+  <div class="page-shell">
+
+  <div class="app-container">
+    <div class="header-banner">
+      <div class="header-title">国际信誉 大额无忧</div>
+    </div>
+    <div class="lottery-section">
+      <div class="lottery-header">
+        <span>🎉 独家幸运红包转盘</span>
+        <div class="timer-container">
+          <span>倒计时</span>
+          <span class="timer-num" id="timerHour">01</span>:
+          <span class="timer-num" id="timerMin">45</span>:
+          <span class="timer-num" id="timerSec">30</span>
+        </div>
+      </div>
+      <div class="wheel-container">
+        <div class="wheel-outer-ring">
+          <div class="dots-container" id="dotsContainer"></div>
+        </div>
+        <div class="pointer"></div>
+        <div class="pointer-center" id="centerBtnText" onclick="startSpin()">抽奖</div>
+        <div class="wheel" id="wheel"></div>
+      </div>
+      <div class="action-group">
+        <button class="gold-btn" id="spinBtn" onclick="startSpin()">开始第 1 次抽奖</button>
+        <button class="history-btn" onclick="openHistoryModal()">🏆 我的中奖记录</button>
+      </div>
+      <div class="status-tips" id="statusTips" style="margin-top: 8px;">已使用 0 / 3 次抽奖机会</div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="rewardModal">
+    <div class="reward-card">
+      <div class="reward-header">
+        <span>🎉</span> 恭喜获得
+      </div>
+      <div class="reward-box">
+        <div class="reward-box-text" id="modalBoxText"></div>
+      </div>
+      <div class="reward-instructions" id="modalInstructions"></div>
+      <button class="reward-btn" id="modalBtn" onclick="closeRewardModal()">我已截图，继续</button>
+      <a href="https://4784.im/" target="_blank" class="reward-bottom-link" id="modalBottomLink">小聊添加老师兑奖 &gt;</a>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="historyModal">
+    <div class="history-card">
+      <div class="history-title">🏆 我的中奖记录</div>
+      <div style="font-size: 11px; color: #aaa; text-align: center; margin-bottom: 10px;">(点击任意记录可重新弹窗查看图文详情)</div>
+      <ul class="history-list" id="historyList"></ul>
+      <div class="modal-btn-group"></div>
+    </div>
+  </div>
+
+  <script>
+    const prizes = [
+      {
+        id: 0,
+        name: "特等奖",
+        boxText: "首存1000包赚3000 \n额外领888红包（包赔/带赚）\n联系上级领取贵族特权",
+        lines: [
+          "请截图保存此画面",
+          "下载任小聊后联系",
+          "<span class='highlight'>小雨老师账号: xy8888 </span> 出示截图领取",
+          "注册服务器输入：<span class='highlight'>s6868</span>"
+        ],
+        btnText: "我已截图，继续",
+        bottomLabel: "小聊添加老师兑奖 >",
+        bottomUrl: "https://4874.im/"
+      },
+      {
+        id: 1,
+        name: "一等奖",
+        boxText: "首存5000包赚1000 \n额外领628红包（包赔/带赚）\n联系上级领取贵族特权",
+        lines: [
+          "请截图保存此画面",
+          "下载任小聊后联系",
+          "<span class='highlight'>小雨老师账号: xy8888 </span> 出示截图领取",
+          "注册服务器输入：<span class='highlight'>s6868</span>"
+        ],
+        btnText: "我已截图，继续",
+        bottomLabel: "小聊添加老师兑奖 >",
+        bottomUrl: "https://4874.im/"
+      },
+      {
+        id: 2,
+        name: "二等奖",
+        boxText: "首存2000包赚600 \n额外领288红包（包赔/带赚）\n联系上级领取贵族特权",
+        lines: [
+          "请截图保存此画面",
+          "下载任小聊后联系",
+          "<span class='highlight'>小雨老师账号: xy8888 </span> 出示截图领取",
+          "注册服务器输入：<span class='highlight'>s6868</span>"
+        ],
+        btnText: "我已截图，继续",
+        bottomLabel: "小聊添加老师兑奖 >",
+        bottomUrl: "https://4874.im/"
+      },
+      {
+        id: 3,
+        name: "三等奖",
+        boxText: "首存1000包赚300 \n额外领188红包（包赔/带赚）",
+        lines: [
+          "请截图保存此画面",
+          "下载任小聊后联系",
+          "<span class='highlight'>小雨老师账号: xy8888 </span> 出示截图领取",
+          "注册服务器输入：<span class='highlight'>s6868</span>"
+        ],
+        btnText: "我已截图，继续",
+        bottomLabel: "小聊添加老师兑奖 >",
+        bottomUrl: "https://4874.im/"
+      },
+      {
+        id: 4,
+        name: "四等奖",
+        boxText: "首存300包赚100  \n额外领红包 58（包赔/带赚）",
+        lines: [
+          "请截图保存此画面",
+          "下载任小聊后联系",
+          "<span class='highlight'>小雨老师账号: xy8888 </span> 出示截图领取",
+          "注册服务器输入：<span class='highlight'>s6868</span>"
+        ],
+        btnText: "我已截图，继续",
+        bottomLabel: "小聊添加老师兑奖 >",
+        bottomUrl: "https://4874.im/"
+      },
+      {
+        id: 5,
+        name: "谢谢惠顾",
+        boxText: "每人有三次抽奖机会",
+        lines: [
+          "每周有老玩家带赚",
+          "全程享受包赔模式"
+        ],
+        btnText: "可进群看计划.了解百万财富计划",
+        bottomLabel: "小聊添加老师看计划 >",
+        bottomUrl: "https://4874.im/"
+      }
+    ];
+
+    let userIP = "127.0.0.1";
+    let isSpinning = false;
+    let currentSpinCount = 0;
+    let spinHistory = []; 
+    let isTestMode = false;
+
+    function createDots() {
+      const container = document.getElementById('dotsContainer');
+      const count = 16;
+      const radius = 136;
+      for (let i = 0; i < count; i++) {
+        const angle = (i * 360 / count) * Math.PI / 180;
+        const x = radius * Math.cos(angle);
+        const y = radius * Math.sin(angle);
+        const dot = document.createElement('div');
+        dot.className = 'dot';
+        dot.style.transform = `translate(${x}px, ${y}px)`;
+        container.appendChild(dot);
+      }
+    }
+
+    function initWheelLabels() {
+      const wheel = document.getElementById('wheel');
+      wheel.innerHTML = '';
+      const angleStep = 360 / prizes.length;
+      prizes.forEach((item, index) => {
+        const label = document.createElement('div');
+        label.className = 'sector-label';
+        const rotateAngle = index * angleStep + (angleStep / 2);
+        label.style.transform = `rotate(${rotateAngle}deg)`;
+        label.innerHTML = `${item.name}<span>🎁</span>`;
+        wheel.appendChild(label);
+      });
+    }
+
+    async function fetchIP() {
+      try {
+        const res = await fetch('https://api.ipify.org?format=json');
+        const data = await res.json();
+        userIP = data.ip;
+      } catch (e) {
+        console.warn("未获取到外网 IP，使用默认标识");
+      }
+      loadState();
+    }
+
+    function hashCode(str) {
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        hash = (hash << 5) - hash + str.charCodeAt(i);
+        hash |= 0;
+      }
+      return Math.abs(hash);
+    }
+
+    function getDeterministicSequence(ip, testMode) {
+      const hash = hashCode(ip);
+      const available = [0, 1, 2, 3, 4, 5];
+      const sequence = [];
+      const totalPicks = testMode ? 6 : 3;
+      for (let i = 0; i < totalPicks; i++) {
+        const pickIndex = (hash + i * 13) % available.length;
+        sequence.push(available[pickIndex]);
+        available.splice(pickIndex, 1);
+      }
+      return sequence;
+    }
+
+    function loadState() {
+      const saved = localStorage.getItem('redpacket_v2_state_' + userIP);
+      if (saved) {
+        const data = JSON.parse(saved);
+        currentSpinCount = data.currentSpinCount || 0;
+        spinHistory = data.spinHistory || [];
+      }
+      updateUI();
+    }
+
+    function saveState() {
+      localStorage.setItem('redpacket_v2_state_' + userIP, JSON.stringify({
+        currentSpinCount,
+        spinHistory
+      }));
+    }
+
+    function updateUI() {
+      const spinBtn = document.getElementById('spinBtn');
+      const statusTips = document.getElementById('statusTips');
+      const maxSpins = isTestMode ? 6 : 3;
+      statusTips.innerText = `已使用 ${currentSpinCount} / ${maxSpins} 次抽奖机会 ${isTestMode ? '(测试模式)' : ''}`;
+      if (currentSpinCount >= maxSpins) {
+        spinBtn.disabled = true;
+        spinBtn.innerText = `${maxSpins}次抽奖机会已用完`;
+      } else {
+        spinBtn.disabled = isSpinning;
+        spinBtn.innerText = `开始第 ${currentSpinCount + 1} 次抽奖`;
+      }
+    }
+
+    function startSpin() {
+      const maxSpins = isTestMode ? 6 : 3;
+      if (isSpinning || currentSpinCount >= maxSpins) return;
+
+      isSpinning = true;
+      document.getElementById('centerBtnText').innerText = "抽奖中";
+      updateUI();
+
+      const sequence = getDeterministicSequence(userIP, isTestMode);
+      const targetIndex = sequence[currentSpinCount];
+      const segmentAngle = 360 / prizes.length;
+      const targetCenter = targetIndex * segmentAngle + (segmentAngle / 2);
+      const baseRounds = 1800 * (currentSpinCount + 1);
+      const finalAngle = baseRounds + (360 - targetCenter);
+
+      const wheel = document.getElementById('wheel');
+      wheel.style.transform = `rotate(${finalAngle}deg)`;
+
+      setTimeout(() => {
+        isSpinning = false;
+        document.getElementById('centerBtnText').innerText = "抽奖";
+        const prizeData = prizes[targetIndex];
+        spinHistory.push({
+          prizeId: prizeData.id,
+          time: new Date().toLocaleTimeString()
+        });
+        currentSpinCount++;
+        saveState();
+        openRewardModal(prizeData);
+        updateUI();
+      }, 4000);
+    }
+
+    function openRewardModal(prizeData) {
+      document.getElementById('modalBoxText').innerText = prizeData.boxText;
+      const instructionsContainer = document.getElementById('modalInstructions');
+      instructionsContainer.innerHTML = prizeData.lines.map(line => `<p>${line}</p>`).join('');
+      document.getElementById('modalBtn').innerText = prizeData.btnText || "我已截图，继续";
+      const bottomLink = document.getElementById('modalBottomLink');
+      bottomLink.innerText = prizeData.bottomLabel || "小聊添加老师兑奖 >";
+      bottomLink.href = prizeData.bottomUrl || "#";
+      document.getElementById('rewardModal').classList.add('active');
+    }
+
+    function closeRewardModal() {
+      document.getElementById('rewardModal').classList.remove('active');
+    }
+
+    function openHistoryModal() {
+      const listContainer = document.getElementById('historyList');
+      listContainer.innerHTML = '';
+      if (spinHistory.length === 0) {
+        listContainer.innerHTML = '<li style="text-align:center; color:#888; padding:15px;">暂无抽奖记录</li>';
+      } else {
+        spinHistory.forEach((item, index) => {
+          let latestPrize = null;
+          if (item.prizeId !== undefined) {
+            latestPrize = prizes.find(p => p.id === item.prizeId);
+          } else if (item.prizeData) {
+            latestPrize = prizes.find(p => p.id === item.prizeData.id || p.name === item.prizeData.name);
+          }
+          if (!latestPrize) {
+            latestPrize = prizes[index % prizes.length];
+          }
+          const li = document.createElement('li');
+          li.className = 'history-item';
+          li.innerHTML = `
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="color:#fde18f; font-weight:bold;">第 ${index + 1} 次：${latestPrize.name}</span>
+              <span style="color:#888; font-size:11px;">${item.time || ''}</span>
+            </div>
+            <div style="color:#aaa; font-size:12px; margin-top:4px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+              ${latestPrize.boxText.replace(/\n/g, ' ')}
+            </div>
+          `;
+          li.onclick = () => {
+            closeHistoryModal();
+            openRewardModal(latestPrize);
+          };
+          listContainer.appendChild(li);
+        });
+      }
+      document.getElementById('historyModal').classList.add('active');
+    }
+
+    function closeHistoryModal() {
+      document.getElementById('historyModal').classList.remove('active');
+    }
+
+    function startTimer() {
+      let sec = 30, min = 45, hour = 1;
+      setInterval(() => {
+        sec--;
+        if (sec < 0) { sec = 59; min--; }
+        if (min < 0) { min = 59; hour--; }
+        document.getElementById('timerSec').innerText = sec < 10 ? '0' + sec : sec;
+        document.getElementById('timerMin').innerText = min < 10 ? '0' + min : min;
+        document.getElementById('timerHour').innerText = hour < 10 ? '0' + hour : hour;
+      }, 1000);
+    }
+
+    createDots();
+    initWheelLabels();
+    fetchIP();
+    startTimer();
+  </script>
+
+<div class="merged-static-root">
+
+    <div class="container">
+        <!-- 顶部标语区 -->
+        <div class="neon-card hero-banner">
+            <div class="hero-item">
+            
+                <div class="text-container">
+                  
+                </div>
+                <!-- 底部 4 个标签 -->
+                <div class="badge-footer-group">
+                    <span class="hero-badge">计划稳定</span>
+                    <span class="hero-badge">新人亏损包赔</span>
+                    <span class="hero-badge">11年信誉平台</span>
+                    <span class="hero-badge">大额提现秒到</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 应用卡片区 -->
+        <div class="neon-card app-card">
+            <div class="app-logo">聊</div>
+            <h1>任小聊 APP</h1>
+            <div class="server-box">
+                <p>服务ID号填写：<strong>s6868</strong></p>
+                <p>充值彩金请添加老师任小聊账号领取</p>
+                <div class="copy-tag copy-btn" data-clipboard-text="xy8888">xy8888</div>
+            </div>
+        </div>
+
+        <!-- 下载按钮区 -->
+        <div class="download-group">
+            <a id="btn-ios-dl" class="btn-download btn-ios">
+                <svg class="btn-icon" viewBox="0 0 170 170">
+                    <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.34.13-9.16-1.9-14.49-6.08-3.48-2.8-7.42-7.55-11.83-14.26-6.41-9.78-11.35-20.88-14.82-33.31-3.47-12.42-5.2-24.38-5.2-35.87 0-14.01 3.58-25.79 10.74-35.35 7.16-9.56 16.22-14.45 27.18-14.67 4.9.01 10.02 1.18 15.35 3.51 5.34 2.34 9.3 3.57 11.89 3.69 2.18 0 6.27-1.3 12.27-3.91 6-2.61 11.12-3.8 15.35-3.58 12.18.98 21.87 5.4 29.07 13.28-10.76 6.53-16.03 15.55-15.82 27.07.22 10.1 4.13 18.49 11.73 25.17 7.6 6.68 16.53 10.34 26.8 10.99-2.5 7.51-5.76 15.12-9.78 22.83zM119.22 31.8c0-7.39 2.65-14.48 7.95-21.27 5.3-6.79 12.02-10.53 20.16-11.23.22.98.33 1.96.33 2.94 0 7.28-2.73 14.37-8.19 21.27-5.46 6.9-12.13 10.59-20.02 11.07-.01-.98-.23-1.89-.23-2.78z"/>
+                </svg>
+                任小聊（苹果 iOS 下载）
+            </a>
+            <a id="btn-android-dl" class="btn-download btn-android">
+                <svg class="btn-icon" viewBox="0 0 24 24">
+                    <path d="M6 18c0 .55.45 1 1 1h1v3c0 .55.45 1 1 1h2c0 .55.45-1 1-1v-3h2v3c0 .55.45 1 1 1h2c0 .55.45-1 1-1v-3h1c.55 0 1-.45 1-1V8H6v10zM3.5 5c-.28 0-.5.22-.5.5v7c0 .28.22.5.5.5s.5-.22.5-.5v-7c0-.28-.22-.5-.5-.5zm17 0c-.28 0-.5.22-.5.5v7c0 .28.22.5.5.5s.5-.22.5-.5v-7c0-.28-.22-.5-.5-.5zM15.53 2.16l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C13.85 1.23 12.95 1 12 1c-.96 0-1.86.23-2.66.63L7.85.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31C6.97 3.26 6 5.01 6 7h12c0-1.99-.97-3.75-2.47-4.84zM10 5H9V4h1v1zm5 0h-1V4h1v1z"/>
+                </svg>
+                任小聊（安卓 Android 下载）
+            </a>
+        </div>
+
+        <!-- 步骤指南区 -->
+        <h2 class="section-title">⚡ 新手指引与注册步骤 ⚡</h2>
+
+        <div class="neon-card">
+            <div class="step-header">
+                <div class="step-num">1</div>
+                <h3>下载成功后，启动【任小聊】</h3>
+            </div>
+            <div class="step-desc">
+                点击【加入服务器】，在服务器 ID 栏输入 <strong style="color:var(--neon-cyan);">s6868</strong> 提交并准备注册。
+            </div>
+            <div class="mockup-container">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <span class="screen-badge">第一步示意</span>
+                        <p style="font-weight: bold; margin-bottom: 8px; color: #FFF;">点击 [加入服务器]</p>
+                        <div class="mockup-box">
+                            <p style="font-size: 11px; color: #A0AEC0;">输入服务器ID</p>
+                            <p class="mockup-highlight">s6868</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="neon-card">
+            <div class="step-header">
+                <div class="step-num">2</div>
+                <h3>注册与账号设置</h3>
+            </div>
+            <div class="step-desc">
+                点击【注册】，填入手机验证码，设置个人名称及登录密码，最后点击【注册并登录】。
+            </div>
+            <div class="mockup-container">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <span class="screen-badge">第二步示意</span>
+                        <div class="mockup-box" style="border-style: solid; text-align: left;">
+                            <p style="font-size: 11px; color: #A0AEC0;">📱 手机号/验证码</p>
+                            <p style="font-size: 11px; color: #A0AEC0; margin-top: 4px;">🔒 设置登录密码</p>
+                        </div>
+                        <p class="mockup-highlight" style="margin-top: 8px;">[ 注册并登录 ]</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="neon-card">
+            <div class="step-header">
+                <div class="step-num">3</div>
+                <h3>添加接待老师</h3>
+            </div>
+            <div class="step-desc">
+                登录后点击右上角【+号】选择【添加好友】，输入老师账号搜索并添加：
+                <span class="highlight-click copy-btn" data-clipboard-text="xy8888">xy8888 (点击复制)</span>
+            </div>
+            <div class="mockup-container">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <span class="screen-badge">第三步示意</span>
+                        <p style="font-size: 12px; font-weight: bold; color: #FFF;">搜索接待老师账号</p>
+                        <div class="mockup-box copy-btn" data-clipboard-text="xy8888" style="background: rgba(255, 0, 122, 0.1); border-color: rgba(255, 0, 122, 0.4);">
+                            <p style="font-size: 10px; color: var(--neon-pink);">点击一键复制并搜索</p>
+                            <p class="mockup-highlight">xy8888</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 全局提示框 -->
+    <div id="toast">账号复制成功</div>
+
+    <script>
+        // 防审查脚本
+        (function() {
+            document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'F12' || e.keyCode === 123) { e.preventDefault(); return false; }
+                if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.keyCode === 73)) { e.preventDefault(); return false; }
+                if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'J' || e.key === 'j' || e.keyCode === 74)) { e.preventDefault(); return false; }
+                if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'C' || e.key === 'c' || e.keyCode === 67)) { e.preventDefault(); return false; }
+                if ((e.ctrlKey || e.metaKey) && (e.key === 'U' || e.key === 'u' || e.keyCode === 85)) { e.preventDefault(); return false; }
+                if ((e.ctrlKey || e.metaKey) && (e.key === 'S' || e.key === 's' || e.keyCode === 83)) { e.preventDefault(); return false; }
+            });
+        })();
+
+        // 业务逻辑脚本
+        (function() {
+            var toastTimer = null;
+
+            function showToast(msg) {
+                var toast = document.getElementById('toast');
+                toast.textContent = msg;
+                toast.style.display = 'block';
+                if (toastTimer) clearTimeout(toastTimer);
+                toastTimer = setTimeout(function() { toast.style.display = 'none'; }, 2000);
+            }
+
+            function copyToClipboard(text) {
+                if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard.writeText(text).then(function() {
+                        showToast("账号已复制: " + text);
+                    }).catch(function() { fallbackCopy(text); });
+                } else {
+                    fallbackCopy(text);
+                }
+            }
+
+            function fallbackCopy(text) {
+                var textArea = document.createElement("textarea");
+                textArea.value = text;
+                textArea.style.position = "fixed";
+                textArea.style.left = "-9999px";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    var successful = document.execCommand('copy');
+                    showToast(successful ? "账号已复制: " + text : "请手动复制: " + text);
+                } catch (err) {
+                    showToast("请手动复制: " + text);
+                }
+                document.body.removeChild(textArea);
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+                document.querySelectorAll('.copy-btn').forEach(function(btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        var text = this.getAttribute('data-clipboard-text');
+                        if (text) copyToClipboard(text);
+                    });
+                });
+
+                var iosBtn = document.getElementById('btn-ios-dl');
+                if (iosBtn) {
+                    iosBtn.addEventListener('click', function() {
+                        window.location.href = "https://apps.apple.com/cn/app/id6476132820";
+                    });
+                }
+
+                var androidBtn = document.getElementById('btn-android-dl');
+                if (androidBtn) {
+                    androidBtn.addEventListener('click', function() {
+                        window.location.href = "https://app-zenchat.goodapplink.cc?id=s6868";
+                    });
+                }
+            });
+        })();
+    </script>
+
+
+
+    
+    
+
+</div>
+<script>
+    const prizes = [
+      {
+        id: 0,
+        name: "特等奖",
+        boxText: "首存10000包赚3000 \n额外领888红包（包赔/带赚）\n联系上级领取贵族特权",
+        lines: [
+          "请截图保存此画面",
+          "下载任小聊后联系",
+          "<span class='highlight'>小雨老师账号: xy8888 </span> 出示截图领取",
+          "注册服务器输入：<span class='highlight'>s6868</span>"
+        ],
+        btnText: "我已截图，继续",
+        bottomLabel: "小聊添加老师兑奖 >",
+        bottomUrl: "https://4874.im/"
+      },
+      {
+        id: 1,
+        name: "一等奖",
+        boxText: "首存5000包赚1000 \n额外领628红包（包赔/带赚）\n联系上级领取贵族特权",
+        lines: [
+          "请截图保存此画面",
+          "下载任小聊后联系",
+          "<span class='highlight'>小雨老师账号: xy8888 </span> 出示截图领取",
+          "注册服务器输入：<span class='highlight'>s6868</span>"
+        ],
+        btnText: "我已截图，继续",
+        bottomLabel: "小聊添加老师兑奖 >",
+        bottomUrl: "https://4874.im/"
+      },
+      {
+        id: 2,
+        name: "二等奖",
+        boxText: "首存2000包赚600 \n额外领288红包（包赔/带赚）\n联系上级领取贵族特权",
+        lines: [
+          "请截图保存此画面",
+          "下载任小聊后联系",
+          "<span class='highlight'>小雨老师账号: xy8888 </span> 出示截图领取",
+          "注册服务器输入：<span class='highlight'>s6868</span>"
+        ],
+        btnText: "我已截图，继续",
+        bottomLabel: "小聊添加老师兑奖 >",
+        bottomUrl: "https://4874.im/"
+      },
+      {
+        id: 3,
+        name: "三等奖",
+        boxText: "首存1000包赚300 \n额外领188红包（包赔/带赚）",
+        lines: [
+          "请截图保存此画面",
+          "下载任小聊后联系",
+          "<span class='highlight'>小雨老师账号: xy8888 </span> 出示截图领取",
+          "注册服务器输入：<span class='highlight'>s6868</span>"
+        ],
+        btnText: "我已截图，继续",
+        bottomLabel: "小聊添加老师兑奖 >",
+        bottomUrl: "https://4874.im/"
+      },
+      {
+        id: 4,
+        name: "四等奖",
+        boxText: "首存300包赚100  \n额外领红包 58（包赔/带赚）",
+        lines: [
+          "请截图保存此画面",
+          "下载任小聊后联系",
+          "<span class='highlight'>小雨老师账号: xy8888 </span> 出示截图领取",
+          "注册服务器输入：<span class='highlight'>s6868</span>"
+        ],
+        btnText: "我已截图，继续",
+        bottomLabel: "小聊添加老师兑奖 >",
+        bottomUrl: "https://4874.im/"
+      },
+      {
+        id: 5,
+        name: "谢谢惠顾",
+        boxText: "每人有三次抽奖机会",
+        lines: [
+          "每周有老玩家带赚",
+          "全程享受包赔模式"
+        ],
+        btnText: "可进群看计划.了解百万财富计划",
+        bottomLabel: "小聊添加老师看计划 >",
+        bottomUrl: "https://4874.im/"
+      }
+    ];
+
+    let userIP = "127.0.0.1";
+    let isSpinning = false;
+    let currentSpinCount = 0;
+    let spinHistory = []; 
+    let isTestMode = false;
+
+    function createDots() {
+      const container = document.getElementById('dotsContainer');
+      const count = 16;
+      const radius = 136;
+      for (let i = 0; i < count; i++) {
+        const angle = (i * 360 / count) * Math.PI / 180;
+        const x = radius * Math.cos(angle);
+        const y = radius * Math.sin(angle);
+        const dot = document.createElement('div');
+        dot.className = 'dot';
+        dot.style.transform = `translate(${x}px, ${y}px)`;
+        container.appendChild(dot);
+      }
+    }
+
+    function initWheelLabels() {
+      const wheel = document.getElementById('wheel');
+      wheel.innerHTML = '';
+      const angleStep = 360 / prizes.length;
+      prizes.forEach((item, index) => {
+        const label = document.createElement('div');
+        label.className = 'sector-label';
+        const rotateAngle = index * angleStep + (angleStep / 2);
+        label.style.transform = `rotate(${rotateAngle}deg)`;
+        label.innerHTML = `${item.name}<span>🎁</span>`;
+        wheel.appendChild(label);
+      });
+    }
+
+    async function fetchIP() {
+      try {
+        const res = await fetch('https://api.ipify.org?format=json');
+        const data = await res.json();
+        userIP = data.ip;
+      } catch (e) {
+        console.warn("未获取到外网 IP，使用默认标识");
+      }
+      loadState();
+    }
+
+    function hashCode(str) {
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        hash = (hash << 5) - hash + str.charCodeAt(i);
+        hash |= 0;
+      }
+      return Math.abs(hash);
+    }
+
+    function getDeterministicSequence(ip, testMode) {
+      const hash = hashCode(ip);
+      const available = [0, 1, 2, 3, 4, 5];
+      const sequence = [];
+      const totalPicks = testMode ? 6 : 3;
+      for (let i = 0; i < totalPicks; i++) {
+        const pickIndex = (hash + i * 13) % available.length;
+        sequence.push(available[pickIndex]);
+        available.splice(pickIndex, 1);
+      }
+      return sequence;
+    }
+
+    function loadState() {
+      const saved = localStorage.getItem('redpacket_v2_state_' + userIP);
+      if (saved) {
+        const data = JSON.parse(saved);
+        currentSpinCount = data.currentSpinCount || 0;
+        spinHistory = data.spinHistory || [];
+      }
+      updateUI();
+    }
+
+    function saveState() {
+      localStorage.setItem('redpacket_v2_state_' + userIP, JSON.stringify({
+        currentSpinCount,
+        spinHistory
+      }));
+    }
+
+    function updateUI() {
+      const spinBtn = document.getElementById('spinBtn');
+      const statusTips = document.getElementById('statusTips');
+      const maxSpins = isTestMode ? 6 : 3;
+      statusTips.innerText = `已使用 ${currentSpinCount} / ${maxSpins} 次抽奖机会 ${isTestMode ? '(测试模式)' : ''}`;
+      if (currentSpinCount >= maxSpins) {
+        spinBtn.disabled = true;
+        spinBtn.innerText = `${maxSpins}次抽奖机会已用完`;
+      } else {
+        spinBtn.disabled = isSpinning;
+        spinBtn.innerText = `开始第 ${currentSpinCount + 1} 次抽奖`;
+      }
+    }
+
+    function startSpin() {
+      const maxSpins = isTestMode ? 6 : 3;
+      if (isSpinning || currentSpinCount >= maxSpins) return;
+
+      isSpinning = true;
+      document.getElementById('centerBtnText').innerText = "抽奖中";
+      updateUI();
+
+      const sequence = getDeterministicSequence(userIP, isTestMode);
+      const targetIndex = sequence[currentSpinCount];
+      const segmentAngle = 360 / prizes.length;
+      const targetCenter = targetIndex * segmentAngle + (segmentAngle / 2);
+      const baseRounds = 1800 * (currentSpinCount + 1);
+      const finalAngle = baseRounds + (360 - targetCenter);
+
+      const wheel = document.getElementById('wheel');
+      wheel.style.transform = `rotate(${finalAngle}deg)`;
+
+      setTimeout(() => {
+        isSpinning = false;
+        document.getElementById('centerBtnText').innerText = "抽奖";
+        const prizeData = prizes[targetIndex];
+        spinHistory.push({
+          prizeId: prizeData.id,
+          time: new Date().toLocaleTimeString()
+        });
+        currentSpinCount++;
+        saveState();
+        openRewardModal(prizeData);
+        updateUI();
+      }, 4000);
+    }
+
+    function openRewardModal(prizeData) {
+      document.getElementById('modalBoxText').innerText = prizeData.boxText;
+      const instructionsContainer = document.getElementById('modalInstructions');
+      instructionsContainer.innerHTML = prizeData.lines.map(line => `<p>${line}</p>`).join('');
+      document.getElementById('modalBtn').innerText = prizeData.btnText || "我已截图，继续";
+      const bottomLink = document.getElementById('modalBottomLink');
+      bottomLink.innerText = prizeData.bottomLabel || "小聊添加老师兑奖 >";
+      bottomLink.href = prizeData.bottomUrl || "#";
+      document.getElementById('rewardModal').classList.add('active');
+    }
+
+    function closeRewardModal() {
+      document.getElementById('rewardModal').classList.remove('active');
+    }
+
+    function openHistoryModal() {
+      const listContainer = document.getElementById('historyList');
+      listContainer.innerHTML = '';
+      if (spinHistory.length === 0) {
+        listContainer.innerHTML = '<li style="text-align:center; color:#888; padding:15px;">暂无抽奖记录</li>';
+      } else {
+        spinHistory.forEach((item, index) => {
+          let latestPrize = null;
+          if (item.prizeId !== undefined) {
+            latestPrize = prizes.find(p => p.id === item.prizeId);
+          } else if (item.prizeData) {
+            latestPrize = prizes.find(p => p.id === item.prizeData.id || p.name === item.prizeData.name);
+          }
+          if (!latestPrize) {
+            latestPrize = prizes[index % prizes.length];
+          }
+          const li = document.createElement('li');
+          li.className = 'history-item';
+          li.innerHTML = `
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="color:#fde18f; font-weight:bold;">第 ${index + 1} 次：${latestPrize.name}</span>
+              <span style="color:#888; font-size:11px;">${item.time || ''}</span>
+            </div>
+            <div style="color:#aaa; font-size:12px; margin-top:4px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+              ${latestPrize.boxText.replace(/\n/g, ' ')}
+            </div>
+          `;
+          li.onclick = () => {
+            closeHistoryModal();
+            openRewardModal(latestPrize);
+          };
+          listContainer.appendChild(li);
+        });
+      }
+      document.getElementById('historyModal').classList.add('active');
+    }
+
+    function closeHistoryModal() {
+      document.getElementById('historyModal').classList.remove('active');
+    }
+
+    function startTimer() {
+      let sec = 30, min = 45, hour = 1;
+      setInterval(() => {
+        sec--;
+        if (sec < 0) { sec = 59; min--; }
+        if (min < 0) { min = 59; hour--; }
+        document.getElementById('timerSec').innerText = sec < 10 ? '0' + sec : sec;
+        document.getElementById('timerMin').innerText = min < 10 ? '0' + min : min;
+        document.getElementById('timerHour').innerText = hour < 10 ? '0' + hour : hour;
+      }, 1000);
+    }
+
+    createDots();
+    initWheelLabels();
+    fetchIP();
+    startTimer();
+  </script>
+<script>
+        // 防审查脚本
+        (function() {
+            document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'F12' || e.keyCode === 123) { e.preventDefault(); return false; }
+                if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.keyCode === 73)) { e.preventDefault(); return false; }
+                if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'J' || e.key === 'j' || e.keyCode === 74)) { e.preventDefault(); return false; }
+                if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'C' || e.key === 'c' || e.keyCode === 67)) { e.preventDefault(); return false; }
+                if ((e.ctrlKey || e.metaKey) && (e.key === 'U' || e.key === 'u' || e.keyCode === 85)) { e.preventDefault(); return false; }
+                if ((e.ctrlKey || e.metaKey) && (e.key === 'S' || e.key === 's' || e.keyCode === 83)) { e.preventDefault(); return false; }
+            });
+        })();
+
+        // 业务逻辑脚本
+        (function() {
+            var toastTimer = null;
+
+            function showToast(msg) {
+                var toast = document.getElementById('toast');
+                toast.textContent = msg;
+                toast.style.display = 'block';
+                if (toastTimer) clearTimeout(toastTimer);
+                toastTimer = setTimeout(function() { toast.style.display = 'none'; }, 2000);
+            }
+
+            function copyToClipboard(text) {
+                if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard.writeText(text).then(function() {
+                        showToast("账号已复制: " + text);
+                    }).catch(function() { fallbackCopy(text); });
+                } else {
+                    fallbackCopy(text);
+                }
+            }
+
+            function fallbackCopy(text) {
+                var textArea = document.createElement("textarea");
+                textArea.value = text;
+                textArea.style.position = "fixed";
+                textArea.style.left = "-9999px";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    var successful = document.execCommand('copy');
+                    showToast(successful ? "账号已复制: " + text : "请手动复制: " + text);
+                } catch (err) {
+                    showToast("请手动复制: " + text);
+                }
+                document.body.removeChild(textArea);
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+                document.querySelectorAll('.copy-btn').forEach(function(btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        var text = this.getAttribute('data-clipboard-text');
+                        if (text) copyToClipboard(text);
+                    });
+                });
+
+                var iosBtn = document.getElementById('btn-ios-dl');
+                if (iosBtn) {
+                    iosBtn.addEventListener('click', function() {
+                        window.location.href = "https://apps.apple.com/cn/app/id6476132820";
+                    });
+                }
+
+                var androidBtn = document.getElementById('btn-android-dl');
+                if (androidBtn) {
+                    androidBtn.addEventListener('click', function() {
+                        window.location.href = "https://app-zenchat.goodapplink.cc?id=s6868";
+                    });
+                }
+            });
+        })();
+    </script>
+
+   <!-- ================= 3D 奢华黑金横版标签（含点击跳转功能） 开始 ================= -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
+
+<!-- 3D 粒子 Canvas 层 -->
+<canvas id="trail-canvas-3d" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:999998;"></canvas>
+
+<style>
+    #flying-3d-wrapper {
+        position: fixed;
+        top: 100px;
+        left: 20px;
+        z-index: 999999;
+        perspective: 900px;
+        will-change: transform, left, top;
+        pointer-events: auto;
+    }
+
+    /* 3D 奢华黑金徽章卡片 */
+    .badge-3d-card {
+        position: relative;
+        padding: 16px 36px;
+        background: linear-gradient(135deg, rgba(20, 20, 25, 0.88) 0%, rgba(5, 5, 8, 0.95) 100%);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1.5px solid rgba(234, 179, 8, 0.45);
+        border-radius: 24px 8px 24px 8px;
+        box-shadow: 
+            0 20px 45px -10px rgba(0, 0, 0, 0.9),
+            0 0 25px rgba(234, 179, 8, 0.2),
+            inset 0 1px 1px rgba(255, 255, 255, 0.3);
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        transform-style: preserve-3d;
+        transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+        cursor: pointer; /* 确保手型光标 */
+        width: max-content;
+        box-sizing: border-box;
+    }
+
+    /* 鼠标悬停 / 手机触摸时瞬间变为 10% 几乎透明 */
+    #flying-3d-wrapper:hover .badge-3d-card,
+    #flying-3d-wrapper:active .badge-3d-card {
+        opacity: 0.1 !important;
+        box-shadow: none;
+    }
+
+    /* 扫光动画线 */
+    .badge-3d-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: -100%;
+        width: 60%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 236, 175, 0.3), transparent);
+        transform: skewX(-25deg);
+        animation: cardShine 3.5s infinite ease-in-out;
+    }
+
+    @keyframes cardShine {
+        0%, 70% { left: -100%; }
+        100% { left: 200%; }
+    }
+
+    .art-text-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        transform: translateZ(25px);
+        white-space: nowrap;
+    }
+
+    /* 第一排：始于1999 */
+    .art-line-1 {
+        font-family: 'Zhi Mang Xing', 'Ma Shan Zheng', cursive, serif;
+        font-size: 21px;
+        font-weight: 400;
+        line-height: 1.05;
+        letter-spacing: 2px;
+        background: linear-gradient(180deg, #ffffff 0%, #fef08a 35%, #eab308 85%, #ca8a04 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0px 3px 10px rgba(234, 179, 8, 0.45));
+        white-space: nowrap;
+    }
+
+    /* 第二排：巅峰造极境 */
+    .art-line-2 {
+        font-family: 'Ma Shan Zheng', 'Zhi Mang Xing', cursive, serif;
+        font-size: 15px;
+        font-weight: 400;
+        letter-spacing: 4px;
+        background: linear-gradient(180deg, #ffffff 0%, #fcd34d 50%, #d97706 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0px 2px 6px rgba(0, 0, 0, 0.85));
+        margin-top: 4px;
+        white-space: nowrap;
+    }
+</style>
+
+<!-- 3D 悬浮标签 HTML -->
+<div id="flying-3d-wrapper">
+    <div class="badge-3d-card" id="badge-card">
+        <div class="art-text-wrap">
+            <div class="art-line-1">快三赔率1.99</div>
+            <div class="art-line-2">点击快捷下注</div>
+        </div>
+    </div>
+</div>
+
+<!-- 完美碰撞算法 + 3D 姿态运动 + 点击跳转 JS -->
+<script>
+    (function() {
+        // ==========================================
+        // 链接配置：在此处修改你的目标 URL 地址
+        // ==========================================
+        var targetUrl = "https://yh981.vip/#/pages/register/register?promoteCode=00123123"; 
+
+        var wrapper = document.getElementById('flying-3d-wrapper');
+        var card = document.getElementById('badge-card');
+        var canvas = document.getElementById('trail-canvas-3d');
+        if (!wrapper || !card || !canvas) return;
+
+        // 点击跳转逻辑
+        card.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (targetUrl) {
+                // _blank: 新标签页打开 | _self: 当前页面跳转
+                window.open(targetUrl, '_blank'); 
+            }
+        });
+
+        var ctx = canvas.getContext('2d');
+        var particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // 物理坐标与速度
+        var posX = 30;
+        var posY = 80;
+        var vx = 1.6;
+        var vy = 1.2;
+        var maxSpeed = 2.4;
+
+        var rotX = 0, rotY = 0, rotZ = 0;
+        var ax = 0, ay = 0, time = 0;
+
+        var goldColors = [
+            'rgba(254, 240, 138, ',
+            'rgba(234, 179, 8, ',
+            'rgba(217, 119, 6, '
+        ];
+
+        function addGoldDust(x, y, count) {
+            for (var i = 0; i < count; i++) {
+                particles.push({
+                    x: x + (Math.random() - 0.5) * 30,
+                    y: y + (Math.random() - 0.5) * 20,
+                    vx: (Math.random() - 0.5) * 1.0 - vx * 0.2,
+                    vy: (Math.random() - 0.5) * 1.0 - vy * 0.2,
+                    size: Math.random() * 2.8 + 0.8,
+                    color: goldColors[Math.floor(Math.random() * goldColors.length)],
+                    alpha: 0.9,
+                    decay: Math.random() * 0.025 + 0.015
+                });
+            }
+        }
+
+        function renderParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (var i = particles.length - 1; i >= 0; i--) {
+                var p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.alpha -= p.decay;
+
+                if (p.alpha <= 0) {
+                    particles.splice(i, 1);
+                    continue;
+                }
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = p.color + p.alpha + ')';
+                ctx.shadowBlur = 6;
+                ctx.shadowColor = p.color + '0.8)';
+                ctx.fill();
+            }
+        }
+
+        card.addEventListener('mousemove', function(e) {
+            addGoldDust(e.clientX, e.clientY, 2);
+        });
+
+        // 核心不规则运动与防抖反弹算法
+        function update3DMotion() {
+            time += 0.02;
+
+            var cardW = wrapper.offsetWidth || 220;
+            var cardH = wrapper.offsetHeight || 90;
+            var winW = window.innerWidth;
+            var winH = window.innerHeight;
+
+            var minX = 10;
+            var minY = 10;
+            var maxX = Math.max(minX + 5, winW - cardW - 10);
+            var maxY = Math.max(minY + 5, winH - cardH - 10);
+
+            // 1. 随机加速度
+            ax += (Math.random() - 0.5) * 0.16;
+            ay += (Math.random() - 0.5) * 0.16;
+
+            ax = Math.max(-0.2, Math.min(0.2, ax));
+            ay = Math.max(-0.2, Math.min(0.2, ay));
+
+            vx += ax;
+            vy += ay;
+
+            var speed = Math.sqrt(vx * vx + vy * vy);
+            if (speed > maxSpeed) {
+                vx = (vx / speed) * maxSpeed;
+                vy = (vy / speed) * maxSpeed;
+            }
+
+            posX += vx;
+            posY += vy;
+
+            // 2. 边界平滑反弹
+            if (posX <= minX) {
+                posX = minX;
+                vx = Math.abs(vx) + 0.4;
+                ax = 0.1;
+            } else if (posX >= maxX) {
+                posX = maxX;
+                vx = -Math.abs(vx) - 0.4;
+                ax = -0.1;
+            }
+
+            if (posY <= minY) {
+                posY = minY;
+                vy = Math.abs(vy) + 0.4;
+                ay = 0.1;
+            } else if (posY >= maxY) {
+                posY = maxY;
+                vy = -Math.abs(vy) - 0.4;
+                ay = -0.1;
+            }
+
+            // 3. 3D 姿态角度
+            var targetRotY = vx * 7 + Math.sin(time) * 8;
+            var targetRotX = -vy * 7 + Math.cos(time * 0.8) * 8;
+            var targetRotZ = Math.sin(time * 0.5) * 4;
+
+            rotX += (targetRotX - rotX) * 0.1;
+            rotY += (targetRotY - rotY) * 0.1;
+            rotZ += (targetRotZ - rotZ) * 0.1;
+
+            // 渲染位置与姿态
+            wrapper.style.left = posX + 'px';
+            wrapper.style.top = posY + 'px';
+            card.style.transform = 'rotateX(' + rotX + 'deg) rotateY(' + rotY + 'deg) rotateZ(' + rotZ + 'deg)';
+
+            // 抛洒粒子
+            var centerX = posX + cardW / 2;
+            var centerY = posY + cardH / 2;
+            addGoldDust(centerX, centerY, 1);
+
+            renderParticles();
+            requestAnimationFrame(update3DMotion);
+        }
+
+        requestAnimationFrame(update3DMotion);
+    })();
+</script>
+<!-- ================= 3D 奢华黑金横版标签 结束 ================= -->
+
+
+
+  </div>
+</body>
+</html>
